@@ -1,11 +1,7 @@
 from litestar import Litestar, get
 import os
 import sqlalchemy
-import picologging as logging
-
-logging.basicConfig()
-logger = logging.getLogger()
-
+import logging
 
 def connect_tcp_socket() -> sqlalchemy.engine.base.Engine:
     """Initializes a TCP connection pool for a Cloud SQL instance of MySQL."""
@@ -35,7 +31,7 @@ def connect_tcp_socket() -> sqlalchemy.engine.base.Engine:
         # ...
     )
 
-    logger.info("Database connected!")
+    logging.info("Database connected!")
     return pool
 
 

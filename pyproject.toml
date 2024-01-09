@@ -7,7 +7,6 @@ dependencies = [
     "sqlalchemy>=2.0.25",
     "pymysql>=1.1.0",
     "litestar>=2.5.0",
-    "picologging>=0.9.3",
 ]
 requires-python = "==3.9.*"
 readme = "README.md"
