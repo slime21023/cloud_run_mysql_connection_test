@@ -1,7 +1,17 @@
 from litestar import Litestar, get
+from litestar.logging import LoggingConfig
 import os
 import sqlalchemy
 import logging
+
+pool = None
+logging_config = LoggingConfig(
+    root={"level": logging.getLevelName(logging.INFO), "handlers": ["console"]},
+    formatters={
+        "standard": {"format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"}
+    },
+)
+
 
 def connect_tcp_socket() -> sqlalchemy.engine.base.Engine:
     """Initializes a TCP connection pool for a Cloud SQL instance of MySQL."""
@@ -31,11 +41,8 @@ def connect_tcp_socket() -> sqlalchemy.engine.base.Engine:
         # ...
     )
 
-    logging.info("Database connected!")
+    print("Database connected!")
     return pool
-
-
-pool = None
 
 
 @get("/")
@@ -52,12 +59,9 @@ async def health_check() -> bool:
 async def is_connected() -> bool:
     if pool is None:
         return False
-
-    res = pool.execute("select 1=1;").first()
-    if res is not None:
-        return True
     else:
-        return False
+        return True
+
 
 pool = connect_tcp_socket()
-app = Litestar([hello_world, is_connected])
+app = Litestar([hello_world, health_check, is_connected], logging_config=logging_config)
