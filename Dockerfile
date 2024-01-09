@@ -1,8 +1,8 @@
 FROM python:3.9-alpine 
 
 # install PDM
-RUN pip install -U pip setuptools wheel
-RUN pip install pdm litestar
+RUN pip install -U pip
+RUN pip install pdm litestar[standard]
 
 # copy files
 COPY pyproject.toml pdm.lock README.md /project/
