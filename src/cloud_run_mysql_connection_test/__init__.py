@@ -59,6 +59,5 @@ async def is_connected() -> bool:
     else:
         return False
 
-
 pool = connect_tcp_socket()
 app = Litestar([hello_world, is_connected])

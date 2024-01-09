@@ -12,5 +12,5 @@ COPY src/ /project/src
 WORKDIR /project
 RUN pdm export -o requirements.txt --without-hashes --prod && pip install -r requirements.txt
 
-CMD ["sh", "-c", "litestar --app src.cloud_run_mysql_connection_test:app run"]
+CMD ["sh", "-c", "litestar --app src.cloud_run_mysql_connection_test:app run --host 0.0.0.0 --wc 2"]
 
