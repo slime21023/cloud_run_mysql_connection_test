@@ -1,0 +1,4 @@
+tests
+.pdm-python
+__pycache__
+.gitignore

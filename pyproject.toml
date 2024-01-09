@@ -1,0 +1,18 @@
+[project]
+name = "cloud_run_mysql_connection_test"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [{ name = "kevinchueh", email = "slime21023@gmail.com" }]
+dependencies = [
+    "sqlalchemy>=2.0.25",
+    "pymysql>=1.1.0",
+    "litestar>=2.5.0",
+    "picologging>=0.9.3",
+]
+requires-python = "==3.9.*"
+readme = "README.md"
+license = { text = "MIT" }
+
+
+[tool.pdm]
+package-type = "application"
